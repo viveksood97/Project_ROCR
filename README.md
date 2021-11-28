@@ -1,11 +1,14 @@
 # Project_ROCR
 [![License:MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/viveksood97/Project_ROCR/LICENSE)
+[![Coverage Status](https://coveralls.io/repos/github/markosej11/Project_ROCR/badge.svg?branch=main)](https://coveralls.io/github/markosej11/Project_ROCR?branch=main)
 
 Project ROCRstands for ROS Operated Collection Robot
 
 # Authors
 Markose Jacob - markj11@terpmail.umd.edu (Graduate Student in Robotics at the University of Maryland College Park, Dec 2021)
+
 Yash Mandar Kulkarni - ykulkarn@umd.edu (Graduate Student in Robotics at the University of Maryland College Park, Dec 2021)
+
 Vivek Sood - vsood@umd.edu (Graduate Student in Robotics at the University of Maryland College Park, Dec 2021)
 
 # License 
