@@ -1,5 +1,6 @@
 # Project_ROCR
-[![License:MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/markosej11/Project_ROCR/LICENSE)
+[![License:MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/viveksood97/Project_ROCR/LICENSE)
+
 Project ROCRstands for ROS Operated Collection Robot
 
 # Authors
@@ -15,4 +16,10 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+# Sprint notes 
+https://docs.google.com/document/d/1bqV_HCkFut4tG7U7UBhUveYOTpLC3wL2CKf_Kpq-iWs/edit
+
+# API Google spread sheet
+https://docs.google.com/spreadsheets/d/15Pr1158XUufMSIfwu-V3ih1gd9oGYmvFHCGcRDBxyUs/edit#gid=0
 
