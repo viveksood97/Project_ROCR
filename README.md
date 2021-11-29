@@ -41,8 +41,9 @@ The link to our sprint notes can be found [here](https://docs.google.com/documen
 # API Google spread sheet
 We have been following the agile methodology in this project to track all the tasks involved. We have been utilizing the notion platform to achieve this which can be seen in the link below:
 
-[Notion Agile Board](https://docs.google.com/spreadsheets/d/15Pr1158XUufMSIfwu-V3ih1gd9oGYmvFHCGcRDBxyUs/edit#gid=0)
+[Product Backlog](https://docs.google.com/spreadsheets/d/15Pr1158XUufMSIfwu-V3ih1gd9oGYmvFHCGcRDBxyUs/edit#gid=0)
 
 # Video presntation
 The link to our video presentation : [Phase1](https://drive.google.com/drive/u/0/folders/1dvlhAqxTyvUwC-_0GbSXE5IGWAGvmSi3)
+
 
