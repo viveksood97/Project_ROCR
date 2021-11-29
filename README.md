@@ -26,7 +26,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 # Overview
 
-ROCR is an autonomus cleanup robot which can be used indoors to pick up objects (toys) and place them at a designated location. The robot can uses SLAM and gmapping to navigate its way indoors. The RGBD camera helps it to identify the bojects it has to pick up and the two arms which using a rack and pinion method picks uo the object and the robot autonomusly navigates itself to the drop off point.
+ROCR is an autonomous cleanup robot which can be used indoors to pick up objects (toys) and place them at a designated location. The robot can uses SLAM and gmapping to navigate its way indoors. The RGBD camera helps it to identify the bojects it has to pick up and the two arms which using a rack and pinion method picks to the object and the robot autonomously navigates itself to the drop off point.
 
 # Dependencies
 The following dependencies are required to run this package:
@@ -36,7 +36,14 @@ The following dependencies are required to run this package:
 3. Ubuntu 18.04 
 
 # Sprint notes 
-https://docs.google.com/document/d/1bqV_HCkFut4tG7U7UBhUveYOTpLC3wL2CKf_Kpq-iWs/edit
+The link to our sprint notes can be found [here](https://docs.google.com/document/d/1bqV_HCkFut4tG7U7UBhUveYOTpLC3wL2CKf_Kpq-iWs/edit)
 
 # API Google spread sheet
-https://docs.google.com/spreadsheets/d/15Pr1158XUufMSIfwu-V3ih1gd9oGYmvFHCGcRDBxyUs/edit#gid=0
+We have been following the agile methodology in this project to track all the tasks involved. We have been utilizing the notion platform to achieve this which can be seen in the link below:
+
+[Product Backlog](https://docs.google.com/spreadsheets/d/15Pr1158XUufMSIfwu-V3ih1gd9oGYmvFHCGcRDBxyUs/edit#gid=0)
+
+# Video presntation
+The link to our video presentation : [Phase1](https://drive.google.com/drive/u/0/folders/1dvlhAqxTyvUwC-_0GbSXE5IGWAGvmSi3)
+
+
