@@ -44,5 +44,5 @@ We have been following the agile methodology in this project to track all the ta
 [Notion Agile Board](https://docs.google.com/spreadsheets/d/15Pr1158XUufMSIfwu-V3ih1gd9oGYmvFHCGcRDBxyUs/edit#gid=0)
 
 # Video presntation
-The link to our video presentation : [Phase 1](https://drive.google.com/drive/u/0/folders/1dvlhAqxTyvUwC-_0GbSXE5IGWAGvmSi3)
-https://drive.google.com/drive/u/0/folders/1dvlhAqxTyvUwC-_0GbSXE5IGWAGvmSi3
+The link to our video presentation : [Phase1](https://drive.google.com/drive/u/0/folders/1dvlhAqxTyvUwC-_0GbSXE5IGWAGvmSi3)
+
