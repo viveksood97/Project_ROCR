@@ -1,15 +1,11 @@
 # Project_ROCR
 [![License:MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/viveksood97/Project_ROCR/LICENSE)
-[![Coverage Status](https://coveralls.io/repos/github/markosej11/Project_ROCR/badge.svg?branch=main)](https://coveralls.io/github/markosej11/Project_ROCR?branch=main)
 
-Project ROCRstands for ROS Operated Collection Robot
 
-# Authors
+Walker Algorithm implementation for the Turtlebot 3 in Gazebo
+
+# Author
 Markose Jacob - markj11@terpmail.umd.edu (Graduate Student in Robotics at the University of Maryland College Park, Dec 2021)
-
-Yash Mandar Kulkarni - ykulkarn@umd.edu (Graduate Student in Robotics at the University of Maryland College Park, Dec 2021)
-
-Vivek Sood - vsood@umd.edu (Graduate Student in Robotics at the University of Maryland College Park, Dec 2021)
 
 # License 
 MIT License
@@ -20,9 +16,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# Sprint notes 
-https://docs.google.com/document/d/1bqV_HCkFut4tG7U7UBhUveYOTpLC3wL2CKf_Kpq-iWs/edit
+# Dependencies
+The following dependencies are required to run this package:
 
-# API Google spread sheet
-https://docs.google.com/spreadsheets/d/15Pr1158XUufMSIfwu-V3ih1gd9oGYmvFHCGcRDBxyUs/edit#gid=0
-
+1. ROS Melodic
+2. catkin 
+3. Ubuntu 18.04 
