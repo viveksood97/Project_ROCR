@@ -1,5 +1,6 @@
 # Project_ROCR
 [![License:MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/viveksood97/Project_ROCR/LICENSE)
+[![Build Status](https://app.travis-ci.com/viveksood97/Project_ROCR.svg?branch=main)](https://app.travis-ci.com/viveksood97/Project_ROCR)
 [![Coverage Status](https://coveralls.io/repos/github/markosej11/Project_ROCR/badge.svg?branch=main)](https://coveralls.io/github/markosej11/Project_ROCR?branch=main)
 
 
