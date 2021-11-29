@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/markosej11/Project_ROCR/badge.svg?branch=main)](https://coveralls.io/github/markosej11/Project_ROCR?branch=main)
 
 
-Project ROCRstands for ROS Operated Collection Robot
+Project ROCRs (ROS Operated Collection Robot)
 
 # Author
 Markose Jacob - markj11@terpmail.umd.edu (Graduate Student in Robotics at the University of Maryland College Park)
