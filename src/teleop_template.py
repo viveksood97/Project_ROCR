@@ -123,18 +123,18 @@ if __name__=="__main__":
             else:
                 control_turn = target_turn
 
-            pub_right.publish(-control_turn) # publish the turn command.
+            pub_right.publish(control_turn) # publish the turn command.
             pub_left.publish(-control_turn) # publish the turn command.
-            pub_move.publish(-control_speed) # publish the control speed. 
+            pub_move.publish(control_speed) # publish the control speed. 
 
 
     except:
         print e
 
     finally:
-        pub_right.publish(-control_turn)
+        pub_right.publish(control_turn)
         pub_left.publish(-control_turn)
-        pub_move.publish(-control_speed)
+        pub_move.publish(control_speed)
         # twist = Twist()
         # twist.linear.x = 0; twist.linear.y = 0; twist.linear.z = 0
         # twist.angular.x = 0; twist.angular.y = 0; twist.angular.z = 0
