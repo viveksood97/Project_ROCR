@@ -98,7 +98,7 @@
   </link>
   <joint
     name="joint_rear_axle"
-    type="revolute">
+    type="continuous">
     <origin
       xyz="-0.04 0 -0.0616"
       rpy="1.5707963267949 0.707024824141767 0" />
@@ -108,12 +108,6 @@
       link="link_rear_axle" />
     <axis
       xyz="0 0 1" />
-          xyz="1 0 0" />
-    <limit
-      lower="-1000000"
-      upper="20"
-      effort="10"
-      velocity="100" />
   </joint>
   <link
     name="link_rear_right_rim">
@@ -369,7 +363,7 @@
   </link>
   <joint
     name="joint_front_left_axle"
-    type="revolute">
+    type="continuous">
     <origin
       xyz="-0.16 -0.074 -0.0346"
       rpy="-1.5708 0 -1.5708" />
@@ -380,9 +374,9 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
+      lower="-.35"
+      upper="0.35"
+      effort="1"
       velocity="0" />
   </joint>
   <link
@@ -533,7 +527,7 @@
   </link>
   <joint
     name="joint_front_right_axle"
-    type="revolute">
+    type="continuous">
     <origin
       xyz="-0.16 -0.015 -0.0346"
       rpy="1.5708 0 1.5708" />
@@ -544,9 +538,9 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
+      lower="-0.35"
+      upper="0.35"
+      effort="1"
       velocity="0" /> 
   </joint>
   <link
@@ -883,7 +877,7 @@
   		<hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="RearEngine">
-      <mechanicalReduction>2</mechanicalReduction>
+      <mechanicalReduction>10</mechanicalReduction>
     </actuator>
   </transmission>
   <transmission name="trans2">
