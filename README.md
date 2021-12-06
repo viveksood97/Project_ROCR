@@ -74,6 +74,12 @@ ros-<distro>-velocity-controllers
 ```
 Example : $ ros-noetic-velocity-controllers 
 
+# Instructions to run test
+```
+cd ~/catkin_ws
+source ./devel/setup.bash
+rostest rocr launch_test.launch    
+```
 
 
 # Sprint notes 
