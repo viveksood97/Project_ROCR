@@ -35,6 +35,53 @@ The following dependencies are required to run this package:
 2. catkin 
 3. Ubuntu 18.04 
 
+# Build Instructions
+```
+$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/src
+$ git clone --recursive https://github.com/viveksood97/Project_ROCR.git
+$ source devel/setup.bash
+$ cd ..
+$ catkin_make
+$ source ~/catkin_ws/devel/setup.bash
+```
+
+# Running Instructions
+The below command will spawn ROCR bot in gazebo 
+```
+roslaunch rocr rocr_bot.launch 
+```
+
+To move the ROCR using teleop (C++) run the below command
+```
+rosrun rocr teleop_twist_keyboard 
+```
+
+To move the ROCR using te) run the below command
+```
+rosrun rocr teleop_template.py
+```
+
+# Instructions to download dependencies
+1. Controller dependencies
+```
+ros-<distro>-effort-controllers   
+```
+Example : $ ros-noetic-effort-controllers
+
+```
+ros-<distro>-velocity-controllers   
+```
+Example : $ ros-noetic-velocity-controllers 
+
+# Instructions to run test
+```
+cd ~/catkin_ws
+source ./devel/setup.bash
+rostest rocr launch_test.launch    
+```
+
+
 # Sprint notes 
 The link to our sprint notes can be found [here](https://docs.google.com/document/d/1bqV_HCkFut4tG7U7UBhUveYOTpLC3wL2CKf_Kpq-iWs/edit)
 
