@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<launch>
+  <!-- <node
+    pkg="beginner_tutorials"
+    type="talker"
+    name="pubTalker"
+    respawn="true"
+    output="screen"
+    args="$(arg newString)"
+  /> -->
+  <test 
+    pkg="rocr" 
+    test-name="rocr_test" 
+    type="rocr_test" 
+  />
+</launch>

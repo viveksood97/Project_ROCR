@@ -62,6 +62,24 @@ To move the ROCR using te) run the below command
 rosrun rocr teleop_template.py
 ```
 
+# Instructions to download dependencies
+1. Controller dependencies
+```
+ros-<distro>-effort-controllers   
+```
+Example : $ ros-noetic-effort-controllers
+
+```
+ros-<distro>-velocity-controllers   
+```
+Example : $ ros-noetic-velocity-controllers 
+
+# Instructions to run test
+```
+cd ~/catkin_ws
+source ./devel/setup.bash
+rostest rocr launch_test.launch    
+```
 
 
 # Sprint notes 
