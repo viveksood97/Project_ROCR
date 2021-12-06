@@ -122,10 +122,10 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-# add_executable(teleop_twist_keyboard src/teleop_twist_keyboard.cpp)
-# target_link_libraries(teleop_twist_keyboard ${catkin_LIBRARIES})
+add_executable(teleop_twist_keyboard src/teleop_twist_keyboard.cpp)
+target_link_libraries(teleop_twist_keyboard ${catkin_LIBRARIES})
 
-# set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
