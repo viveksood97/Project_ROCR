@@ -55,15 +55,11 @@
       </geometry>
     </collision>
   </link>
-  <joint name="joint_rear_axle" type="revolute">
+  <joint name="joint_rear_axle" type="continuous">
     <origin rpy="1.5707963267949 0.707024824141767 0" xyz="-0.04 0 -0.0616"/>
     <parent link="base_link"/>
     <child link="link_rear_axle"/>
     <axis xyz="0 0 1"/>
-    
-          xyz=&quot;1 0 0&quot; /&gt;
-    
-    <limit effort="10" lower="-1000000" upper="20" velocity="100"/>
   </joint>
   <link name="link_rear_right_rim">
     <inertial>
@@ -199,12 +195,12 @@
       </geometry>
     </collision>
   </link>
-  <joint name="joint_front_left_axle" type="revolute">
+  <joint name="joint_front_left_axle" type="continuous">
     <origin rpy="-1.5708 0 -1.5708" xyz="-0.16 -0.074 -0.0346"/>
     <parent link="base_link"/>
     <child link="link_front_left_axle"/>
     <axis xyz="0 1 0"/>
-    <limit effort="10" lower="-0.35" upper="0.35" velocity="0"/>
+    <limit effort="1" lower="-.35" upper="0.35" velocity="0"/>
   </joint>
   <link name="link_front_left_rim">
     <inertial>
@@ -284,12 +280,12 @@
       </geometry>
     </collision>
   </link>
-  <joint name="joint_front_right_axle" type="revolute">
+  <joint name="joint_front_right_axle" type="continuous">
     <origin rpy="1.5708 0 1.5708" xyz="-0.16 -0.015 -0.0346"/>
     <parent link="base_link"/>
     <child link="link_front_right_axle"/>
     <axis xyz="0 1 0"/>
-    <limit effort="10" lower="-0.35" upper="0.35" velocity="0"/>
+    <limit effort="1" lower="-0.35" upper="0.35" velocity="0"/>
   </joint>
   <link name="link_front_right_rim">
     <inertial>
@@ -464,30 +460,27 @@
   <transmission name="trans1">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="joint_rear_axle">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="RearEngine">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
+      <mechanicalReduction>10</mechanicalReduction>
     </actuator>
   </transmission>
   <transmission name="trans2">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="joint_front_left_axle">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="F_L_motor_steer">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
   <transmission name="trans3">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="joint_front_right_axle">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="F_R_motor_steer">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -578,7 +571,7 @@
       </ray>
       <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_head_hokuyo_controller">
         <!-- Use topic name as /my_robot/scan -->
-        <topicName>/toycar3/scan</topicName>
+        <topicName>/rocr/scan</topicName>
         <frameName>laser_frame</frameName>
       </plugin>
     </sensor>
@@ -586,7 +579,9 @@
   <!-- Add gazebo plugin for control here -->
   <gazebo>
     <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-      <robotNamespace>/toycar3</robotNamespace>
+      <robotNamespace>/rocr</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
     </plugin>
   </gazebo>
   <!-- Create a joint between your robot and sensor -->
