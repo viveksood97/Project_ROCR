@@ -60,5 +60,11 @@
     type="rostopic"
     args="pub /calibrated std_msgs/Bool true" />
 
+    <!--RViz node-->
+	<node name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(find rocr)/config/config_file.rviz" />
+
 
 </launch>
