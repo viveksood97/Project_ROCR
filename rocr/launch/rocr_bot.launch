@@ -37,7 +37,7 @@
     <!-- Controller spawner: Starts all the defined controllers with their configs. Just add your controller names defined in your config file into the args tag below   -->
     <!-- ********** CHECK THIS******* -->
     <node name="controller_spwaner" pkg="controller_manager" type="spawner" respawn="true"
-    	output="screen" ns="/rocr" args="joint_state_controller controller_rear controller_f_l_wheel controller_f_r_wheel" />  
+    	output="screen" ns="/rocr" args="joint_state_controller controller_rear controller_f_l_wheel controller_f_r_wheel controller_right_arm" />  
 
 
     <!-- A node to publish the robot states onto ros network -->
@@ -61,10 +61,10 @@
     args="pub /calibrated std_msgs/Bool true" />
 
     <!--RViz node-->
-	<node name="rviz"
+	<!-- <node name="rviz"
     pkg="rviz"
     type="rviz"
-    args="-d $(find rocr)/config/config_file.rviz" />
+    args="-d $(find rocr)/config/config_file.rviz" /> -->
 
 
 </launch>
