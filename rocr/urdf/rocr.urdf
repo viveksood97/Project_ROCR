@@ -12,7 +12,7 @@
     <inertial>
       <origin xyz="-0.107763369330454 -0.0445 -0.020198432861837" rpy="0 0 0" />
       <mass value="10.6823173170711" />
-      <inertia ixx="0.0124898425373309" ixy="2.0561115126567E-18" ixz="0.00348506285187222" iyy="0.0524375502212246" iyz="-4.72546868397655E-19" izz="0.0537557242577893" />
+      <inertia ixx="0.0124898425373309" ixy="2.21422874211196E-18" ixz="0.00348506285187222" iyy="0.0524375502212246" iyz="-4.51307480905537E-19" izz="0.0537557242577893" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -30,12 +30,69 @@
       </geometry>
     </collision>
   </link>
-
+  <link name="link_right_arm">
+    <inertial>
+      <origin xyz="0.105749170017255 0.041732238071937 0.0282872144318269" rpy="0 0 0" />
+      <mass value="0.165316765586137" />
+      <inertia ixx="0.000610620746206452" ixy="-0.000197454180877903" ixz="-0.000122729645879153" iyy="0.000702185352603574" iyz="-0.000186690232637552" izz="0.000631933215587882" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rocr/meshes/link_right_arm.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rocr/meshes/link_right_arm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_right_arm" type="prismatic">
+    <origin xyz="-0.36753 0 -0.072" rpy="1.5708 0 0" />
+    <parent link="base_link" />
+    <child link="link_right_arm" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.5" upper="3.5" effort="1" velocity="0.2" />
+  </joint>
+  <link name="link_left_arm">
+    <inertial>
+      <origin xyz="-0.0655989557893637 0.0418008535608141 0.127140611347727" rpy="0 0 0" />
+      <mass value="0.160992890586137" />
+      <inertia ixx="0.000595308316329433" ixy="-8.90928279875958E-05" ixz="5.62513948424324E-05" iyy="0.000548684708610842" iyz="0.000182030001506834" izz="0.000479899493032254" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rocr/meshes/link_left_arm.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rocr/meshes/link_left_arm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_left_arm" type="prismatic">
+    <origin xyz="-0.214 0.066422 -0.072" rpy="1.5708 0 0" />
+    <parent link="base_link" />
+    <child link="link_left_arm" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.5" upper="3.5" effort="1" velocity="0.2" />
+  </joint>
   <link name="link_rear_axle">
     <inertial>
       <origin xyz="0 0 0.0445" rpy="0 0 0" />
-      <mass value="0.0146411571669772" />
-      <inertia ixx="1.13609366067351E-05" ixy="0" ixz="1.26346979435413E-23" iyy="1.13609366067351E-05" iyz="-1.65728313351587E-23" izz="4.93095849258961E-08" />
+      <mass value="0.0152217234982576" />
+      <inertia ixx="1.19398821903406E-05" ixy="-1.91230860492601E-39" ixz="1.88140042004344E-23" iyy="1.19398821903406E-05" iyz="-2.0993020771577E-37" izz="5.46798234902396E-08" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -54,16 +111,16 @@
     </collision>
   </link>
   <joint name="joint_rear_axle" type="continuous">
-    <origin xyz="-0.04 0 -0.0616" rpy="1.5707963267949 0.707024824141767 0" />
+    <origin xyz="-0.04 0 -0.0616" rpy="1.5708 0 0" />
     <parent link="base_link" />
     <child link="link_rear_axle" />
     <axis xyz="0 0 1" />
   </joint>
   <link name="link_rear_right_rim">
     <inertial>
-      <origin xyz="3.46944695195361E-18 1.38777878078145E-17 0.00350223742057503" rpy="0 0 0" />
-      <mass value="0.0118944183288657" />
-      <inertia ixx="3.8555482465904E-07" ixy="2.64697796016969E-23" ixz="-1.45395901677307E-23" iyy="3.8555482465904E-07" iyz="1.02049206590916E-23" izz="7.15729172321272E-07" />
+      <origin xyz="0 -6.93889390390723E-18 0.00655335417593042" rpy="0 0 0" />
+      <mass value="0.0269891429421557" />
+      <inertia ixx="1.06871584170568E-06" ixy="-4.82050818462486E-23" ixz="-5.58242963112347E-23" iyy="1.06871584170568E-06" iyz="-7.78986618612618E-23" izz="1.59499688104541E-06" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -82,16 +139,16 @@
     </collision>
   </link>
   <joint name="joint_rear_right_rim" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 0.24991380443404" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="link_rear_axle" />
     <child link="link_rear_right_rim" />
     <axis xyz="0 0 0" />
   </joint>
   <link name="link_rear_right_tyre">
     <inertial>
-      <origin xyz="0 0 0.00299999999999996" rpy="0 0 0" />
-      <mass value="0.000894793246519237" />
-      <inertia ixx="6.20496114930369E-08" ixy="6.61744490042422E-24" ixz="-3.89029256642903E-39" iyy="6.20496114930369E-08" iyz="-1.79628849182962E-38" izz="1.18468076093197E-07" />
+      <origin xyz="6.93889390390723E-18 0 0.00599999999999999" rpy="0 0 0" />
+      <mass value="0.00176187281891002" />
+      <inertia ixx="1.38738251479273E-07" ixy="-2.76591370085178E-39" ixz="3.18518483981357E-38" iyy="1.38738251479273E-07" iyz="-9.19988344967612E-40" izz="2.34006429114269E-07" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -110,16 +167,16 @@
     </collision>
   </link>
   <joint name="joint_rear_right_tyre" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 2.8695961764224" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="link_rear_right_rim" />
     <child link="link_rear_right_tyre" />
     <axis xyz="0 0 0" />
   </joint>
   <link name="link_rear_left_rim">
     <inertial>
-      <origin xyz="6.93889390390723E-18 -1.38777878078145E-17 0.00350223742057505" rpy="0 0 0" />
-      <mass value="0.0118944183288657" />
-      <inertia ixx="3.8555482465904E-07" ixy="-5.29395592033938E-23" ixz="5.49663272826212E-24" iyy="3.8555482465904E-07" iyz="1.08491688019404E-23" izz="7.15729172321273E-07" />
+      <origin xyz="0 -6.93889390390723E-18 0.00655335417593042" rpy="0 0 0" />
+      <mass value="0.0269891429421556" />
+      <inertia ixx="1.06871584170568E-06" ixy="1.05879118406788E-22" ixz="-8.69058866923709E-23" iyy="1.06871584170568E-06" iyz="4.5606138607735E-23" izz="1.59499688104541E-06" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -138,16 +195,16 @@
     </collision>
   </link>
   <joint name="joint_rear_left_rim" type="fixed">
-    <origin xyz="0 0 0.089" rpy="3.14159265358979 0 -0.351698544940136" />
+    <origin xyz="0 0 0.089" rpy="3.1416 0 -2.7485" />
     <parent link="link_rear_axle" />
     <child link="link_rear_left_rim" />
     <axis xyz="0 0 0" />
   </joint>
   <link name="link_rear_left_tyre">
     <inertial>
-      <origin xyz="6.93889390390723E-18 0 0.00300000000000003" rpy="0 0 0" />
-      <mass value="0.000894793246519235" />
-      <inertia ixx="6.20496114930378E-08" ixy="-1.98523347012727E-23" ixz="-5.56094918884781E-25" iyy="6.20496114930379E-08" iyz="-2.52617851034184E-25" izz="1.18468076093197E-07" />
+      <origin xyz="0 0 0.00599999999999998" rpy="0 0 0" />
+      <mass value="0.00176187281891002" />
+      <inertia ixx="1.38738251479272E-07" ixy="-2.76591370085178E-39" ixz="-5.29395592033935E-24" iyy="1.38738251479272E-07" iyz="-9.19988344967613E-40" izz="2.34006429114269E-07" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -166,16 +223,16 @@
     </collision>
   </link>
   <joint name="joint_rear_left_tyre" type="fixed">
-    <origin xyz="0 0 0.00600000000000001" rpy="3.14159265358979 0 3.14159265358979" />
+    <origin xyz="0 0 0.012" rpy="3.14159265358979 0 -2.74849784316327" />
     <parent link="link_rear_left_rim" />
     <child link="link_rear_left_tyre" />
     <axis xyz="0 0 0" />
   </joint>
   <link name="link_front_left_axle">
     <inertial>
-      <origin xyz="0.00270396295698487 0.0145761689294997 2.00947993522771E-08" rpy="0 0 0" />
-      <mass value="0.00966461047960184" />
-      <inertia ixx="1.11429036688313E-06" ixy="-3.24714972635315E-07" ixz="1.00513407596102E-12" iyy="3.11973757673527E-07" iyz="-6.77610616845446E-13" izz="1.36027548192717E-06" />
+      <origin xyz="0.00270152340084262 -0.0147521862352328 -3.59055389309582E-08" rpy="0 0 0" />
+      <mass value="0.00980151610171137" />
+      <inertia ixx="1.13698362232884E-06" ixy="3.24392869633284E-07" ixz="-1.79913538752389E-12" iyy="3.12651828844893E-07" iyz="-1.18488336245529E-12" izz="1.38231713607358E-06" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -194,17 +251,17 @@
     </collision>
   </link>
   <joint name="joint_front_left_axle" type="continuous">
-    <origin xyz="-0.16 -0.074 -0.0346" rpy="-1.5708 0 -1.5708" />
+    <origin xyz="-0.16 -0.074 -0.0346" rpy="1.5708 0 -1.6484" />
     <parent link="base_link" />
     <child link="link_front_left_axle" />
     <axis xyz="0 1 0" />
-    <limit lower="-.35" upper="0.35" effort="1" velocity="0" />
+    <limit lower="0" upper="0.0" effort="1" velocity="0" />
   </joint>
   <link name="link_front_left_rim">
     <inertial>
-      <origin xyz="-6.93889390390723E-18 0 -0.00249776257942494" rpy="0 0 0" />
-      <mass value="0.0118944183288657" />
-      <inertia ixx="3.8555482465904E-07" ixy="3.97046694025453E-23" ixz="-3.31313501905856E-24" iyy="3.8555482465904E-07" iyz="-2.24125743469391E-23" izz="7.15729172321273E-07" />
+      <origin xyz="2.77555756156289E-17 2.60208521396521E-17 -0.00537451041392963" rpy="0 0 0" />
+      <mass value="0.0269891429421557" />
+      <inertia ixx="1.06871584170568E-06" ixy="2.1237862227299E-22" ixz="-3.04402465419514E-22" iyy="1.06871584170568E-06" iyz="4.96308367531817E-23" izz="1.59499688104541E-06" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -223,16 +280,16 @@
     </collision>
   </link>
   <joint name="joint_front_left_rim" type="continuous">
-    <origin xyz="0.009 0.027 0" rpy="-1.5708 -0.51596 1.5708" />
+    <origin xyz="0.0030721 -0.027 0" rpy="-1.5708 1.1039 1.5708" />
     <parent link="link_front_left_axle" />
     <child link="link_front_left_rim" />
     <axis xyz="0 0 1" />
   </joint>
   <link name="link_front_left_tyre">
     <inertial>
-      <origin xyz="-1.38777878078145E-17 -2.77555756156289E-17 0.00299999999999996" rpy="0 0 0" />
-      <mass value="0.000894793246519236" />
-      <inertia ixx="6.20496114930359E-08" ixy="2.06795153138257E-25" ixz="-1.53217789333394E-24" iyy="6.20496114930359E-08" iyz="1.57055578166012E-24" izz="1.18468076093197E-07" />
+      <origin xyz="1.38777878078145E-17 -8.32667268468867E-17 0.00592786458986008" rpy="0 0 0" />
+      <mass value="0.00176187281891002" />
+      <inertia ixx="1.38738251479274E-07" ixy="3.23117426778526E-24" ixz="-4.19794160870662E-23" iyy="1.38738251479274E-07" iyz="7.44462551297725E-24" izz="2.34006429114269E-07" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -251,16 +308,16 @@
     </collision>
   </link>
   <joint name="joint_front_left_tyre" type="fixed">
-    <origin xyz="0 0 -0.006" rpy="0 0 0.53015" />
+    <origin xyz="0 0 0" rpy="3.1416 0 -0.81007" />
     <parent link="link_front_left_rim" />
     <child link="link_front_left_tyre" />
     <axis xyz="0 0 0" />
   </joint>
   <link name="link_front_right_axle">
     <inertial>
-      <origin xyz="0.00270396295698512 -0.0145761689294997 -2.00545071105118E-08" rpy="0 0 0" />
-      <mass value="0.00966461047960182" />
-      <inertia ixx="1.11429036688316E-06" ixy="3.24714972635325E-07" ixz="-1.0087995397342E-12" iyy="3.11973757673527E-07" iyz="-6.72771986841547E-13" izz="1.36027548192714E-06" />
+      <origin xyz="0.00270152786594034 -0.0147521828374566 -6.07548128472857E-09" rpy="0 0 0" />
+      <mass value="0.00980150843161576" />
+      <inertia ixx="1.13698316819975E-06" ixy="3.2439295105602E-07" ixz="-7.75777245952202E-13" iyy="3.12651719169867E-07" iyz="-4.26144996246123E-13" izz="1.38231670444798E-06" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -283,13 +340,13 @@
     <parent link="base_link" />
     <child link="link_front_right_axle" />
     <axis xyz="0 1 0" />
-    <limit lower="-0.35" upper="0.35" effort="1" velocity="0" />
+    <limit lower="0" upper="0" effort="1" velocity="0" />
   </joint>
   <link name="link_front_right_rim">
     <inertial>
-      <origin xyz="0 2.77555756156289E-17 -0.00249776257942494" rpy="0 0 0" />
-      <mass value="0.0118944183288657" />
-      <inertia ixx="3.8555482465904E-07" ixy="2.64697796016969E-23" ixz="-1.32914790198409E-23" iyy="3.8555482465904E-07" iyz="7.73663340838489E-23" izz="7.15729172321272E-07" />
+      <origin xyz="2.77555756156289E-17 2.77555756156289E-17 -0.00544664582406959" rpy="0 0 0" />
+      <mass value="0.0269891429421557" />
+      <inertia ixx="1.06871584170567E-06" ixy="5.29395592033938E-23" ixz="1.73164791753298E-22" iyy="1.06871584170567E-06" iyz="7.51528398613046E-23" izz="1.59499688104541E-06" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -308,16 +365,16 @@
     </collision>
   </link>
   <joint name="joint_front_right_rim" type="continuous">
-    <origin xyz="0.009 -0.027 0" rpy="1.5708 0.2483 -1.5708" />
+    <origin xyz="0.003 -0.027 0" rpy="1.5708 -0.93241 -1.5708" />
     <parent link="link_front_right_axle" />
     <child link="link_front_right_rim" />
     <axis xyz="0 0 1" />
   </joint>
   <link name="link_front_right_tyre">
     <inertial>
-      <origin xyz="4.16333634234434E-17 5.55111512312578E-17 0.00300000000000004" rpy="0 0 0" />
-      <mass value="0.000894793246519238" />
-      <inertia ixx="6.20496114930386E-08" ixy="8.27180612553028E-24" ixz="-9.85845765142739E-24" iyy="6.20496114930386E-08" iyz="-3.67768332437104E-24" izz="1.18468076093197E-07" />
+      <origin xyz="0 0 0.00599999999999997" rpy="0 0 0" />
+      <mass value="0.00176187281891002" />
+      <inertia ixx="1.38738251479273E-07" ixy="-2.76591370085178E-39" ixz="3.18518483981357E-38" iyy="1.38738251479273E-07" iyz="-9.19988344967612E-40" izz="2.34006429114269E-07" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -336,135 +393,22 @@
     </collision>
   </link>
   <joint name="joint_front_right_tyre" type="fixed">
-    <origin xyz="0 0 -0.006" rpy="0 0 1.197" />
+    <origin xyz="0 0 -0.012" rpy="0 0 0.63839" />
     <parent link="link_front_right_rim" />
     <child link="link_front_right_tyre" />
     <axis xyz="0 0 0" />
   </joint>
-  <link name="link_bolt">
-    <inertial>
-      <origin xyz="-2.77555756156289E-17 0.0128023255813953 6.93889390390723E-18" rpy="0 0 0" />
-      <mass value="0.00416072537417608" />
-      <inertia ixx="4.19328846959819E-07" ixy="2.23263697890707E-24" ixz="1.59232270356641E-24" iyy="1.99327773739599E-08" iyz="-7.92420384475019E-24" izz="4.19328846959819E-07" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://rocr/meshes/link_bolt.STL" />
-      </geometry>
-      <material name="">
-        <color rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://rocr/meshes/link_bolt.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint name="joint_bolt" type="fixed">
-    <origin xyz="-0.24602 -0.0445 0" rpy="1.5708 0 0" />
-    <parent link="base_link" />
-    <child link="link_bolt" />
-    <axis xyz="0 0 0" />
-  </joint>
-  <link name="link_pinion">
-    <inertial>
-      <origin xyz="3.24740234702858E-15 0.00513746055677001 -6.38378239159465E-16" rpy="0 0 0" />
-      <mass value="0.00960832828739317" />
-      <inertia ixx="2.2820836728479E-07" ixy="-1.84999399159911E-22" ixz="2.80827817961753E-22" iyy="2.76785845733431E-07" iyz="-1.29070812904103E-22" izz="2.2820836728479E-07" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://rocr/meshes/link_pinion.STL" />
-      </geometry>
-      <material name="">
-        <color rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
-      </material>
-    </visual>
-    <!-- <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://rocr/meshes/link_pinion.STL" />
-      </geometry>
-    </collision> -->
-  </link>
-  <joint name="joint_pinion" type="fixed">
-    <origin xyz="0 0.015 0" rpy="-3.1416 -1.5555 3.1416" />
-    <parent link="link_bolt" />
-    <child link="link_pinion" />
-    <axis xyz="0 0 0" />
-  </joint>
-  <link name="link_right_arm">
-    <inertial>
-      <origin xyz="0.104396682675735 0.04006318032966 0.0408822601960999" rpy="0 0 0" />
-      <mass value="1.22458311377959" />
-      <inertia ixx="0.0043934448902123" ixy="-0.00144762759837531" ixz="-0.000861183508602767" iyy="0.0051277316900128" iyz="-0.00133405721864268" izz="0.00471548799195523" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://rocr/meshes/link_right_arm.STL" />
-      </geometry>
-      <material name="">
-        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://rocr/meshes/link_right_arm.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint name="joint_right_arm" type="prismatic">
-    <origin xyz="-0.36753 0.030166 -0.074" rpy="1.5708 0 0" />
-    <parent link="base_link" />
-    <child link="link_right_arm" />
-    <axis xyz="0 0 0" />
-    <limit lower="-0.2" upper="0.2" effort="1000" velocity="0.5" />
-    <inertial></inertial>
-  </joint>
-  <link name="link_left_arm">
-    <inertial>
-      <origin xyz="-0.0662057984489832 0.0401324506668157 -0.0409363133394734" rpy="0 0 0" />
-      <mass value="1.1924981757879" />
-      <inertia ixx="0.00428378099773501" ixy="-0.000654269649461549" ixz="0.000396544891902694" iyy="0.00399903184775616" iyz="0.00130103117009567" izz="0.00359489246372515" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://rocr/meshes/link_left_arm.STL" />
-      </geometry>
-      <material name="">
-        <color rgba="0.909803921568627 0.443137254901961 0.0313725490196078 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://rocr/meshes/link_left_arm.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint name="joint_left_arm" type="fixed">
-    <origin xyz="-0.214 -0.11955 -0.074" rpy="1.5708 0 0" />
-    <parent link="base_link" />
-    <child link="link_left_arm" />
-    <axis xyz="0 0 0" />
-    <limit lower="-0.2" upper="0.2" effort="1000" velocity="0.5" />
-  </joint>
+
   <transmission name="trans1">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="joint_rear_axle">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="RearEngine">
-      <mechanicalReduction>10</mechanicalReduction>
+      <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+
   <transmission name="trans2">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="joint_front_left_axle">
@@ -474,6 +418,7 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+
   <transmission name="trans3">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="joint_front_right_axle">
@@ -484,7 +429,7 @@
     </actuator>
   </transmission>
 
-  <!-- <transmission name="trans4">
+  <transmission name="trans4">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="joint_left_arm">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
@@ -493,7 +438,7 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-  </transmission> -->
+  </transmission>
 
   <transmission name="trans5">
     <type>transmission_interface/SimpleTransmission</type>
