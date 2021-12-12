@@ -9,29 +9,29 @@ rocr:
   controller_rear: 
     type: velocity_controllers/JointVelocityController
     joint: joint_rear_axle
-    pid: {p: 1000.0, i: 0.5, d: 30.0}
+    pid: {p: 10.0, i: 0.5, d: 0.0}
 
   # Controller 2
   controller_f_l_wheel: 
     type: effort_controllers/JointPositionController
     joint: joint_front_left_axle
-    pid: {p: 10.0, i: 0.5, d: 0.0}
+    pid: {p: 0.5, i: 0.5, d: 0.0}
 
   # Controller 3
   controller_f_r_wheel:
     type: effort_controllers/JointPositionController
     joint: joint_front_right_axle
-    pid: {p: 10.0, i: 0.5, d: 0.0}
+    pid: {p: 0.5, i: 0.5, d: 0.0}
 
-  # # Controller 4
-  # controller_left_arm: 
-  #     type: effort_controllers/JointPositionController
-  #     joint: joint_left_arm
-  #     pid: {p: 10.0, i: 0.5, d: 0.0}
+  # Controller 4
+  controller_left_arm: 
+      type: effort_controllers/JointPositionController
+      joint: joint_left_arm
+      pid: {p: 2.0, i: 0.5, d: 5.0}
 
   # Controller 5
   controller_right_arm: 
       type: effort_controllers/JointPositionController
       joint: joint_right_arm
-      pid: {p: 10.0, i: 0.5, d: 0.0}
+      pid: {p: 2.0, i: 0.5, d: 5.0}
  
