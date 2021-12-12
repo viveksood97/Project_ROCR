@@ -28,4 +28,3 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(rocr_test ${catkin_LIBRARIES})
   add_dependencies(rocr_test teleop_twist_keyboard ${catkin_EXPORTED_TARGETS})
  endif()
-

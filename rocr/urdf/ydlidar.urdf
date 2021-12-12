@@ -22,7 +22,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/home/markose/catkin_ws/src/rocr/meshes/ydlidar.dae" />
+          filename="package://rocr/meshes/ydlidar.dae" />
       </geometry>
       <material
         name="">
@@ -36,7 +36,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/home/markose/catkin_ws/src/rocr/meshes/ydlidar.dae" />
+          filename="package://rocr/meshes/ydlidar.dae" />
       </geometry>
     </collision>
   </link>
