@@ -30,18 +30,18 @@
               	</scan>
               	<range>
               		<min>0.10</min>
-              		<max>30.0</max>
-              		<resolution>0.01</resolution>
+              		<max>10.0</max>
+              		<resolution>0.1</resolution>
               	</range>
-              	<noise>
+              	<!-- <noise>
               		<type>gaussian</type>
               		<mean>0.0</mean>
               		<stddev>0.01</stddev>
-              	</noise>
+              	</noise> -->
             </ray>
             <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
             	<!-- Use topic name as /my_robot/scan -->
-				<topicName>/rocr/scan</topicName> 
+				<topicName>/scan</topicName> 
 				<frameName>laser_frame</frameName>
 			</plugin>
 		</sensor>
@@ -51,7 +51,7 @@
 <!-- Add gazebo plugin for control here -->
 	<!-- <gazebo>
 		<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-			<robotNamespace>/rocr</robotNamespace>
+			<robotNamespace>/</robotNamespace>
 			<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
 			<legacyModeNS>true</legacyModeNS>	
 		</plugin>

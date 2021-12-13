@@ -2,428 +2,231 @@
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot
-  name="rocr">
-  <link
-    name="base_link">
-    <inertial>
-      <origin
-        xyz="-0.141982550331591 -0.0449776887077858 -0.0201281379637982"
-        rpy="0 0 0" />
-      <mass
-        value="8.3349118107069" />
-      <inertia
-        ixx="0.0115670401460947"
-        ixy="6.14001253524358E-06"
-        ixz="-0.00089972879961413"
-        iyy="0.0302239682852884"
-        iyz="4.05745548139952E-06"
-        izz="0.0308612658208841" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://rocr/meshes/base_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://rocr/meshes/base_link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <link
-    name="link_right_arm">
-    <inertial>
-      <origin
-        xyz="0.105749170017255 0.041732238071937 0.0288280104468748"
-        rpy="0 0 0" />
-      <mass
-        value="0.165316765586137" />
-      <inertia
-        ixx="0.00061062074620645"
-        ixy="-0.000197454180877903"
-        ixz="-0.000122729645879153"
-        iyy="0.000702185352603572"
-        iyz="-0.000186690232637552"
-        izz="0.000631933215587882" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_right_arm.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_right_arm.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="joint_right_arm"
-    type="prismatic">
-    <origin
-      xyz="-0.36753 0 -0.072"
-      rpy="1.5708 0 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="link_right_arm" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+<robot name="rocr">
+  <link name="dummy_link" />
+  <joint name="dummy_joint" type="fixed">
+    <parent link="dummy_link" />
+    <child link="base_link" />
   </joint>
-  <link
-    name="link_left_arm">
+  <link name="base_link">
     <inertial>
-      <origin
-        xyz="-0.0655989557893638 0.0418008535608141 0.127140611347727"
-        rpy="0 0 0" />
-      <mass
-        value="0.160992890586137" />
-      <inertia
-        ixx="0.000595308316329433"
-        ixy="-8.90928279875956E-05"
-        ixz="5.62513948424321E-05"
-        iyy="0.000548684708610842"
-        iyz="0.000182030001506834"
-        izz="0.000479899493032254" />
+      <origin xyz="-0.141982550331591 -0.0449776887077858 -0.0201281379637982" rpy="0 0 0" />
+      <mass value="8.3349118107069" />
+      <inertia ixx="0.0115670401460947" ixy="6.14001253524358E-06" ixz="-0.00089972879961413" iyy="0.0302239682852884" iyz="4.05745548139952E-06" izz="0.0308612658208841" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_left_arm.STL" />
+        <mesh filename="package://rocr/meshes/base_link.STL" />
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      <material name="">
+        <color rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_left_arm.STL" />
+        <mesh filename="package://rocr/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
-  <joint
-    name="joint_left_arm"
-    type="prismatic">
-    <origin
-      xyz="-0.214 0.066815 -0.072"
-      rpy="1.5708 0 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="link_left_arm" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+  <link name="link_right_arm">
+    <inertial>
+      <origin xyz="0.105749170017255 0.041732238071937 0.0288280104468748" rpy="0 0 0" />
+      <mass value="0.165316765586137" />
+      <inertia ixx="0.00061062074620645" ixy="-0.000197454180877903" ixz="-0.000122729645879153" iyy="0.000702185352603572" iyz="-0.000186690232637552" izz="0.000631933215587882" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rocr/meshes/link_right_arm.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rocr/meshes/link_right_arm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_right_arm" type="prismatic">
+    <origin xyz="-0.36753 0 -0.072" rpy="1.5708 0 0" />
+    <parent link="base_link" />
+    <child link="link_right_arm" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.5" upper="3.5" effort="1" velocity="0.2" />
   </joint>
-  <link
-    name="link_right_rim">
+  <link name="link_left_arm">
     <inertial>
-      <origin
-        xyz="-5.55111512312578E-17 0 -0.0113891093112037"
-        rpy="0 0 0" />
-      <mass
-        value="0.400654705302582" />
-      <inertia
-        ixx="0.000116204274958593"
-        ixy="0"
-        ixz="-8.65078073008246E-22"
-        iyy="0.000116204274958593"
-        iyz="1.33721445129206E-21"
-        izz="0.000203418948332367" />
+      <origin xyz="-0.0655989557893638 0.0418008535608141 0.127140611347727" rpy="0 0 0" />
+      <mass value="0.160992890586137" />
+      <inertia ixx="0.000595308316329433" ixy="-8.90928279875956E-05" ixz="5.62513948424321E-05" iyy="0.000548684708610842" iyz="0.000182030001506834" izz="0.000479899493032254" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_right_rim.STL" />
+        <mesh filename="package://rocr/meshes/link_left_arm.STL" />
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_right_rim.STL" />
+        <mesh filename="package://rocr/meshes/link_left_arm.STL" />
       </geometry>
     </collision>
   </link>
-  <joint
-    name="joint_right_rim"
-    type="continuous">
-    <origin
-      xyz="-0.175 0.003 -0.041947"
-      rpy="1.5708 -0.40272 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="link_right_rim" />
-    <axis
-      xyz="0 0 1" />
+  <joint name="joint_left_arm" type="prismatic">
+    <origin xyz="-0.214 0.066815 -0.072" rpy="1.5708 0 0" />
+    <parent link="base_link" />
+    <child link="link_left_arm" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.5" upper="3.5" effort="1" velocity="0.2" />
   </joint>
-  <link
-    name="link_right_tyre">
+  <link name="link_right_rim">
     <inertial>
-      <origin
-        xyz="5.55111512312578E-17 6.93889390390723E-18 0.01"
-        rpy="0 0 0" />
-      <mass
-        value="0.00856487122656644" />
-      <inertia
-        ixx="4.45967200170225E-06"
-        ixy="-1.94368867832977E-37"
-        ixz="1.61583291242869E-36"
-        iyy="4.45967200170225E-06"
-        iyz="-8.20718180003796E-38"
-        izz="8.22926245649565E-06" />
+      <origin xyz="-5.55111512312578E-17 0 -0.0113891093112037" rpy="0 0 0" />
+      <mass value="0.400654705302582" />
+      <inertia ixx="0.000116204274958593" ixy="0" ixz="-8.65078073008246E-22" iyy="0.000116204274958593" iyz="1.33721445129206E-21" izz="0.000203418948332367" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_right_tyre.STL" />
+        <mesh filename="package://rocr/meshes/link_right_rim.STL" />
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      <material name="">
+        <color rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_right_tyre.STL" />
+        <mesh filename="package://rocr/meshes/link_right_rim.STL" />
       </geometry>
     </collision>
   </link>
-  <joint
-    name="joint_right_tyre"
-    type="fixed">
-    <origin
-      xyz="0 0 -0.022"
-      rpy="0 0 -0.40272" />
-    <parent
-      link="link_right_rim" />
-    <child
-      link="link_right_tyre" />
-    <axis
-      xyz="0 0 0" />
+  <joint name="joint_right_rim" type="continuous">
+    <origin xyz="-0.175 0.003 -0.041947" rpy="1.5708 -0.40272 0" />
+    <parent link="base_link" />
+    <child link="link_right_rim" />
+    <axis xyz="0 0 1" />
   </joint>
-  <link
-    name="link_left_rim">
+  <link name="link_right_tyre">
     <inertial>
-      <origin
-        xyz="0 0 -0.0113891093112036"
-        rpy="0 0 0" />
-      <mass
-        value="0.400654705302582" />
-      <inertia
-        ixx="0.000116204274958593"
-        ixy="-1.27054942088145E-21"
-        ixz="-2.31363573191647E-21"
-        iyy="0.000116204274958593"
-        iyz="-2.30004572317806E-22"
-        izz="0.000203418948332367" />
+      <origin xyz="5.55111512312578E-17 6.93889390390723E-18 0.01" rpy="0 0 0" />
+      <mass value="0.00856487122656644" />
+      <inertia ixx="4.45967200170225E-06" ixy="-1.94368867832977E-37" ixz="1.61583291242869E-36" iyy="4.45967200170225E-06" iyz="-8.20718180003796E-38" izz="8.22926245649565E-06" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_left_rim.STL" />
+        <mesh filename="package://rocr/meshes/link_right_tyre.STL" />
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      <material name="">
+        <color rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_left_rim.STL" />
+        <mesh filename="package://rocr/meshes/link_right_tyre.STL" />
       </geometry>
     </collision>
   </link>
-  <joint
-    name="joint_left_rim"
-    type="continuous">
-    <origin
-      xyz="-0.175 -0.092 -0.041947"
-      rpy="1.5708 -0.002359 3.1416" />
-    <parent
-      link="base_link" />
-    <child
-      link="link_left_rim" />
-    <axis
-      xyz="0 0 1" />
+  <joint name="joint_right_tyre" type="fixed">
+    <origin xyz="0 0 -0.022" rpy="0 0 -0.40272" />
+    <parent link="link_right_rim" />
+    <child link="link_right_tyre" />
+    <axis xyz="0 0 0" />
   </joint>
-  <link
-    name="link_left_tyre">
+  <link name="link_left_rim">
     <inertial>
-      <origin
-        xyz="5.55111512312578E-17 0 0.012"
-        rpy="0 0 0" />
-      <mass
-        value="0.00856487122656644" />
-      <inertia
-        ixx="4.45967200170225E-06"
-        ixy="2.77374126718516E-37"
-        ixz="1.89711423412783E-36"
-        iyy="4.45967200170225E-06"
-        iyz="2.9846536251347E-37"
-        izz="8.22926245649565E-06" />
+      <origin xyz="0 0 -0.0113891093112036" rpy="0 0 0" />
+      <mass value="0.400654705302582" />
+      <inertia ixx="0.000116204274958593" ixy="-1.27054942088145E-21" ixz="-2.31363573191647E-21" iyy="0.000116204274958593" iyz="-2.30004572317806E-22" izz="0.000203418948332367" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_left_tyre.STL" />
+        <mesh filename="package://rocr/meshes/link_left_rim.STL" />
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      <material name="">
+        <color rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_left_tyre.STL" />
+        <mesh filename="package://rocr/meshes/link_left_rim.STL" />
       </geometry>
     </collision>
   </link>
-  <joint
-    name="joint_left_tyre"
-    type="fixed">
-    <origin
-      xyz="0 0 0"
-      rpy="3.1416 0 3.1392" />
-    <parent
-      link="link_left_rim" />
-    <child
-      link="link_left_tyre" />
-    <axis
-      xyz="0 0 0" />
+  <joint name="joint_left_rim" type="continuous">
+    <origin xyz="-0.175 -0.092 -0.041947" rpy="1.5708 -0.002359 3.1416" />
+    <parent link="base_link" />
+    <child link="link_left_rim" />
+    <axis xyz="0 0 -1" />
   </joint>
-  <link
-    name="link_rear_wheel">
+  <link name="link_left_tyre">
     <inertial>
-      <origin
-        xyz="-0.00136107293497366 0.0167139784122666 0.000497520538469617"
-        rpy="0 0 0" />
-      <mass
-        value="0.0168994178831651" />
-      <inertia
-        ixx="3.10259289186708E-06"
-        ixy="-9.46684720380268E-10"
-        ixz="8.59598375765406E-08"
-        iyy="8.50882419569337E-06"
-        iyz="3.05408943067438E-11"
-        izz="5.76434109658073E-06" />
+      <origin xyz="5.55111512312578E-17 0 0.012" rpy="0 0 0" />
+      <mass value="0.00856487122656644" />
+      <inertia ixx="4.45967200170225E-06" ixy="2.77374126718516E-37" ixz="1.89711423412783E-36" iyy="4.45967200170225E-06" iyz="2.9846536251347E-37" izz="8.22926245649565E-06" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_rear_wheel.STL" />
+        <mesh filename="package://rocr/meshes/link_left_tyre.STL" />
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      <material name="">
+        <color rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://rocr/meshes/link_rear_wheel.STL" />
+        <mesh filename="package://rocr/meshes/link_left_tyre.STL" />
       </geometry>
     </collision>
   </link>
-  <joint
-    name="joint_rear_wheel"
-    type="continuous">
-    <origin
-      xyz="-0.035562 -0.0445 -0.01849"
-      rpy="1.5708 0 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="link_rear_wheel" />
-    <axis
-      xyz="0 1 0" />
+  <joint name="joint_left_tyre" type="fixed">
+    <origin xyz="0 0 0" rpy="3.1416 0 3.1392" />
+    <parent link="link_left_rim" />
+    <child link="link_left_tyre" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="link_rear_wheel">
+    <inertial>
+      <origin xyz="-0.00136107293497366 0.0167139784122666 0.000497520538469617" rpy="0 0 0" />
+      <mass value="0.0168994178831651" />
+      <inertia ixx="3.10259289186708E-06" ixy="-9.46684720380268E-10" ixz="8.59598375765406E-08" iyy="8.50882419569337E-06" iyz="3.05408943067438E-11" izz="5.76434109658073E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rocr/meshes/link_rear_wheel.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rocr/meshes/link_rear_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_rear_wheel" type="continuous">
+    <origin xyz="-0.035562 -0.0445 -0.01849" rpy="1.5708 0 0" />
+    <parent link="base_link" />
+    <child link="link_rear_wheel" />
+    <axis xyz="0 1 0" />
   </joint>
 
   <transmission name="trans1">
@@ -448,8 +251,29 @@
     </actuator>
   </transmission>
 
-<gazebo>
-  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-  </plugin>
-</gazebo>
+  <transmission name="trans3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_left_arm">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Arm1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="trans4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_right_arm">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Arm2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"></plugin>
+  </gazebo>
 </robot>

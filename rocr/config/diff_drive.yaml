@@ -1,3 +1,4 @@
+# Controller 1
 rocr_controller:
   type        : "diff_drive_controller/DiffDriveController"
   left_wheel  : 'joint_left_rim'
@@ -30,8 +31,8 @@ rocr_controller:
       max_velocity           : 1.0  # m/s
       min_velocity           : -0.5 # m/s
       has_acceleration_limits: true
-      max_acceleration       : 0.8  # m/s^2
-      min_acceleration       : -0.4 # m/s^2
+      max_acceleration       : 0.1  # m/s^2
+      min_acceleration       : -0.05 # m/s^2
       has_jerk_limits        : true
       max_jerk               : 5.0  # m/s^3
   angular:
@@ -39,6 +40,18 @@ rocr_controller:
       has_velocity_limits    : true
       max_velocity           : 1.7  # rad/s
       has_acceleration_limits: true
-      max_acceleration       : 1.5  # rad/s^2
+      max_acceleration       : 0.1  # rad/s^2
       has_jerk_limits        : true
       max_jerk               : 2.5  # rad/s^3
+
+# Controller 2
+controller_left_arm: 
+    type: effort_controllers/JointPositionController
+    joint: joint_left_arm
+    pid: {p: 500.0, i: 20.5, d: 4.0}
+
+# Controller 3
+controller_right_arm: 
+    type: effort_controllers/JointPositionController
+    joint: joint_right_arm
+    pid: {p: 500.0, i: 20.5, d: 4.0}
