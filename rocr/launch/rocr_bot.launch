@@ -67,5 +67,16 @@
     type="rviz"
     args="-d $(find rocr)/config/config_file.rviz" />
 
+    <group ns="object1">
+        <node name="obj_spawner_red" pkg="gazebo_ros" type="spawn_model" args="-urdf -file $(find rocr)/urdf/object_red.urdf -model obj1 -x -2.15 -y 0.45 -z 0.08 -R 0 -P 0 -Y 1.57" />
+    </group>
+    <group ns="object2">
+        <node name="obj_spawner_blue" pkg="gazebo_ros" type="spawn_model" args="-urdf -file $(find rocr)/urdf/object_blue.urdf -model obj2 -x -0.8 -y 2.45 -z 0.08 -R 0 -P 0 -Y 1.57" />
+    </group>
+    <group ns="object3">
+        <node name="obj_spawner_green" pkg="gazebo_ros" type="spawn_model" args="-urdf -file $(find rocr)/urdf/object_green.urdf -model obj3 -x -4 -y 3.25 -z 0.08 -R 0 -P 0 -Y 1.57" />
+    </group>
+   
+
 
 </launch>
