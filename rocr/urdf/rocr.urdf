@@ -4,12 +4,8 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="rocr">
-  <link name="dummy_link"></link>
-  <joint name="dummy_joint" type="fixed">
-    <parent link="dummy_link" />
-    <child link="base_link" />
-  </joint>
-  <link name="base_link">
+  <link
+    name="base_link">
     <inertial>
       <origin
         xyz="-0.141982550331591 -0.0449776887077858 -0.0201281379637982"
@@ -441,7 +437,7 @@
     </actuator>
   </transmission>
 
-  <transmission name="trans1">
+  <transmission name="trans2">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="joint_right_rim">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
@@ -457,4 +453,3 @@
   </plugin>
 </gazebo>
 </robot>
-

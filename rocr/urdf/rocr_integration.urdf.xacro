@@ -49,13 +49,13 @@
 	
 
 <!-- Add gazebo plugin for control here -->
-	<gazebo>
+	<!-- <gazebo>
 		<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
 			<robotNamespace>/rocr</robotNamespace>
 			<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
 			<legacyModeNS>true</legacyModeNS>	
 		</plugin>
-	</gazebo>
+	</gazebo> -->
 
 
 <!-- Create a joint between your robot and sensor -->

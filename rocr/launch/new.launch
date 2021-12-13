@@ -4,7 +4,9 @@
         <arg name="paused" value="false"/>
     </include>
 
-    <param name= "robot_description" command="$(find xacro)/xacro --inorder $(find rocr)/urdf/rocr_integration.urdf.xacro" />
+    <param name= "robot_description" command="$(find xacro)/xacro --inorder $(find rocr)/urdf/rocr_integration.urdf.xacro" /> 
+
+    <!-- <param name= "robot_description" textfile="$(find rocr)/urdf/rocr.urdf" /> -->
     <param name = "my_robot" value="rocr"/> 
 	<arg name ="init_pose" value="-x -1.5 -y 0.5 -z 0.08 -R 0 -P 0 -Y 0"/>
 
