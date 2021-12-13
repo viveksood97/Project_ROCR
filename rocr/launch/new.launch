@@ -5,10 +5,23 @@
     </include>
 
     <param name= "robot_description" command="$(find xacro)/xacro --inorder $(find rocr)/urdf/rocr_integration.urdf.xacro" /> 
-
-    <!-- <param name= "robot_description" textfile="$(find rocr)/urdf/rocr.urdf" /> -->
     <param name = "my_robot" value="rocr"/> 
 	<arg name ="init_pose" value="-x -1.5 -y 0.5 -z 0.08 -R 0 -P 0 -Y 0"/>
+
+    <rosparam file="$(find rocr)/config/diff_drive.yaml" command="load"/>
+
+    <!-- Node for publishing base footprint -->
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="false"/>
+    </node>
+
+    
+    <node pkg="tf" type="static_transform_publisher" name="map_to_base" args="1 0 0 0 0 0 1 map dummy_link 100" />
+
+    <node name="controller_spwaner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="rocr_controller controller_left_arm controller_right_arm" /> 
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
 
     <node
     name="spawn_model"
@@ -17,9 +30,37 @@
     args="$(arg init_pose) -param robot_description -urdf -model my_robot"
     output="screen"/>
 
-    <rosparam file="$(find rocr)/config/diff_drive.yaml" command="load"/>
+    <node
+    name="fake_joint_calibration"
+    pkg="rostopic"
+    type="rostopic"
+    args="pub /calibrated std_msgs/Bool true" />
 
-    <node name="controller_spwaner" pkg="controller_manager" type="spawner" respawn="false"
-    	output="screen" args="rocr_controller" />  
+ 
+
+    <node name="Joint_tester" pkg="rviz" type="rviz" output="screen" args="-d $(find rocr)/config/map.rviz"/>
+
+
+    <node pkg="gmapping" type="slam_gmapping" name="maping_node">
+        <param name="base_frame" value="base_link" />
+        <param name="odom_frame" value="odom" />
+        <param name="delta" value="0.1" />
+    </node>
+        
+    <!-- RViz node-->
+	<!-- <node name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(find rocr)/config/map.rviz" /> -->
+
+    <group ns="object1">
+        <node name="obj_spawner_red" pkg="gazebo_ros" type="spawn_model" args="-urdf -file $(find rocr)/urdf/object_red.urdf -model obj1 -x -2.15 -y 0.45 -z 0.08 -R 0 -P 0 -Y 1.57" />
+    </group>
+    <group ns="object2">
+        <node name="obj_spawner_blue" pkg="gazebo_ros" type="spawn_model" args="-urdf -file $(find rocr)/urdf/object_blue.urdf -model obj2 -x -0.8 -y 2.45 -z 0.08 -R 0 -P 0 -Y 1.57" />
+    </group>
+    <group ns="object3">
+        <node name="obj_spawner_green" pkg="gazebo_ros" type="spawn_model" args="-urdf -file $(find rocr)/urdf/object_green.urdf -model obj3 -x -4 -y 3.25 -z 0.08 -R 0 -P 0 -Y 1.57" />
+    </group>
     
 </launch>
