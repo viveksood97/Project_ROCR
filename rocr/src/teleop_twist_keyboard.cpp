@@ -45,6 +45,19 @@ std::map<char, std::vector<float>> speedBindings
   {'c', {1, 0.9}}
 };
 
+//Create map armBindings
+std::map<char, std::vector<float>> armBindings
+{
+  // {'q', {1.1, 1.1}},
+  // {'z', {0.9, 0.9}},
+  // {'w', {1.1, 1}},
+  // {'x', {0.9, 1}},
+  // {'e', {1, 1.1}},
+  // {'c', {1, 0.9}}
+  {'1',{0.0,0}},
+  {'2',{-0.1,0}}
+};
+
 // Reminder message
 const char* msg = R"(
 
@@ -79,6 +92,8 @@ float speed(8.0); // Linear velocity (m/s)
 float turn(1.0); // Angular velocity (rad/s)
 float x(0), y(0), z(0), th(0); // Forward/backward/neutral direction vars
 char key(' ');
+
+float arm_movement(0);
 
 // For non-blocking keyboard inputs
 int getch(void)
@@ -121,12 +136,15 @@ int main(int argc, char** argv)
   ros::Publisher pub_right = nh.advertise<std_msgs::Float64>("/rocr/controller_f_r_wheel/command", 10);
   ros::Publisher pub_left = nh.advertise<std_msgs::Float64>("/rocr/controller_f_l_wheel/command", 10);
   ros::Publisher pub_move = nh.advertise<std_msgs::Float64>("/rocr/controller_rear/command", 10);
+  ros::Publisher pub_right_arm = nh.advertise<std_msgs::Float64>("/rocr/controller_right_arm/command", 10);
+  ros::Publisher pub_left_arm = nh.advertise<std_msgs::Float64>("/rocr/controller_left_arm/command", 10);
 
    
 
   // Create Twist message
   //geometry_msgs::Twist twist;
   std_msgs::Float64 control_turn, control_speed, control_turn_2;
+  std_msgs::Float64 arm_control, arm_control_2;
   control_turn = {};
   control_speed = {};
   float target_speed, target_turn;
@@ -158,7 +176,13 @@ int main(int argc, char** argv)
       speed = speed * speedBindings[key][0]; 
       turn = turn * speedBindings[key][1];
 
-      printf("\rCurrent: speed %f\tturn %f | Last command: %c   ", speed, turn, key);
+      //printf("\rCurrent: speed %f\tturn %f | Last command: %c   ", speed, turn, key);
+    }
+
+    else if (armBindings.count(key) == 1)
+    {
+      //float multiplier = 0.01;
+      arm_movement = armBindings[key][0];
     }
 
     // Otherwise, set the robot to stop
@@ -170,6 +194,7 @@ int main(int argc, char** argv)
       th = 0;
       control_turn = {};
       control_speed = {};
+      arm_movement = 0;
 
       // If ctrl-C (^C) was pressed, terminate the program
       if (key == '\x03')
@@ -178,12 +203,14 @@ int main(int argc, char** argv)
         break;
       }
 
-      printf("\rCurrent: speed %f\tturn %f | Invalid command! %c", speed, turn, key);
+      //printf("\rCurrent: speed %f\tturn %f | Invalid command! %c", speed, turn, key);
     }
 
     target_speed = speed * x; 
     target_turn = turn * th;
-    std::cout<<"Target speed turn "<<target_speed<<" "<<target_turn<<std::endl;
+    //std::cout<<"Target speed turn "<<target_speed<<" "<<target_turn<<std::endl;
+
+    arm_control.data = arm_movement;
 
     if (target_speed > control_speed.data)
       control_speed.data = std::min((double)target_speed, control_speed.data + 0.02);
@@ -210,10 +237,12 @@ int main(int argc, char** argv)
 
     // Publish it and resolve any remaining callbacks
     control_turn_2.data = -1 * control_turn.data;
+    arm_control_2.data = -1 * arm_control.data;
     pub_right.publish(control_turn) ;
-    //control_turn.data *= -1;
-    pub_left.publish(control_turn_2);
+    pub_left.publish(control_turn);
     pub_move.publish(control_speed);
+    pub_right_arm.publish(arm_control);
+    pub_left_arm.publish(arm_control_2);
     ros::spinOnce();
   }
 
