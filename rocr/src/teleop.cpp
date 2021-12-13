@@ -2,6 +2,7 @@
 #include <geometry_msgs/Twist.h>
 #include <std_msgs/Float64.h>
 
+
 #include <stdio.h>
 #include <unistd.h>
 #include <termios.h>
@@ -48,12 +49,6 @@ std::map<char, std::vector<float>> speedBindings
 //Create map armBindings
 std::map<char, std::vector<float>> armBindings
 {
-  // {'q', {1.1, 1.1}},
-  // {'z', {0.9, 0.9}},
-  // {'w', {1.1, 1}},
-  // {'x', {0.9, 1}},
-  // {'e', {1, 1.1}},
-  // {'c', {1, 0.9}}
   {'1',{0.0,0}},
   {'2',{-0.1,0}}
 };
@@ -83,17 +78,21 @@ q/z : increase/decrease max speeds by 10%
 w/x : increase/decrease only linear speed by 10%
 e/c : increase/decrease only angular speed by 10%
 
+Opening Arm Controller
+--------------------------------
+Press 2 to open the arms
+Press 1 to close the arms
+
 CTRL-C to quit
 
 )";
 
 // Init variables
-float speed(8.0); // Linear velocity (m/s)
+float speed(0.5); // Linear velocity (m/s)
 float turn(1.0); // Angular velocity (rad/s)
 float x(0), y(0), z(0), th(0); // Forward/backward/neutral direction vars
+float arm_movement(0); // Arm Movement
 char key(' ');
-
-float arm_movement(0);
 
 // For non-blocking keyboard inputs
 int getch(void)
@@ -131,23 +130,13 @@ int main(int argc, char** argv)
   ros::NodeHandle nh;
 
   // Init cmd_vel publisher
-  //ros::Publisher pub = nh.advertise<geometry_msgs::Twist>("cmd_vel", 1);
-
-  ros::Publisher pub_right = nh.advertise<std_msgs::Float64>("/rocr/controller_f_r_wheel/command", 10);
-  ros::Publisher pub_left = nh.advertise<std_msgs::Float64>("/rocr/controller_f_l_wheel/command", 10);
-  ros::Publisher pub_move = nh.advertise<std_msgs::Float64>("/rocr/controller_rear/command", 10);
-  ros::Publisher pub_right_arm = nh.advertise<std_msgs::Float64>("/rocr/controller_right_arm/command", 10);
-  ros::Publisher pub_left_arm = nh.advertise<std_msgs::Float64>("/rocr/controller_left_arm/command", 10);
-
-   
+  ros::Publisher pub = nh.advertise<geometry_msgs::Twist>("/rocr_controller/cmd_vel", 1);
+  ros::Publisher pub_right_arm = nh.advertise<std_msgs::Float64>("/controller_right_arm/command", 10);
+  ros::Publisher pub_left_arm = nh.advertise<std_msgs::Float64>("/controller_left_arm/command", 10);
 
   // Create Twist message
-  //geometry_msgs::Twist twist;
-  std_msgs::Float64 control_turn, control_speed, control_turn_2;
+  geometry_msgs::Twist twist;
   std_msgs::Float64 arm_control, arm_control_2;
-  control_turn = {};
-  control_speed = {};
-  float target_speed, target_turn;
 
   printf("%s", msg);
   printf("\rCurrent: speed %f\tturn %f | Awaiting command...\r", speed, turn);
@@ -166,22 +155,22 @@ int main(int argc, char** argv)
       z = moveBindings[key][2];
       th = moveBindings[key][3];
 
-      //printf("\rCurrent: speed %f\tturn %f | Last command: %c   ", speed, turn, key);
+      printf("\rCurrent: speed %f\tturn %f | Last command: %c   ", speed, turn, key);
     }
 
     // Otherwise if it corresponds to a key in speedBindings
     else if (speedBindings.count(key) == 1)
     {
       // Grab the speed data
-      speed = speed * speedBindings[key][0]; 
+      speed = speed * speedBindings[key][0];
       turn = turn * speedBindings[key][1];
 
-      //printf("\rCurrent: speed %f\tturn %f | Last command: %c   ", speed, turn, key);
+      printf("\rCurrent: speed %f\tturn %f | Last command: %c   ", speed, turn, key);
     }
 
     else if (armBindings.count(key) == 1)
     {
-      //float multiplier = 0.01;
+      // Grab arm movement
       arm_movement = armBindings[key][0];
     }
 
@@ -192,55 +181,31 @@ int main(int argc, char** argv)
       y = 0;
       z = 0;
       th = 0;
-      control_turn = {};
-      control_speed = {};
       arm_movement = 0;
 
       // If ctrl-C (^C) was pressed, terminate the program
       if (key == '\x03')
       {
-        //printf("\n\n                 .     .\n              .  |\\-^-/|  .    \n             /| } O.=.O { |\\\n\n                 CH3EERS\n\n");
         break;
       }
 
-      //printf("\rCurrent: speed %f\tturn %f | Invalid command! %c", speed, turn, key);
+      printf("\rCurrent: speed %f\tturn %f | Invalid command! %c", speed, turn, key);
     }
 
-    target_speed = speed * x; 
-    target_turn = turn * th;
-    //std::cout<<"Target speed turn "<<target_speed<<" "<<target_turn<<std::endl;
+    // Update the Twist message
+    twist.linear.x = x * speed;
+    twist.linear.y = y * speed;
+    twist.linear.z = z * speed;
+
+    twist.angular.x = 0;
+    twist.angular.y = 0;
+    twist.angular.z = th * turn;
 
     arm_control.data = arm_movement;
 
-    if (target_speed > control_speed.data)
-      control_speed.data = std::min((double)target_speed, control_speed.data + 0.02);
-    else if (target_speed < control_speed.data)
-      control_speed.data = std::max((double)target_speed, control_speed.data - 0.02);
-    else
-      control_speed.data = target_speed;
-    
-    if (target_turn > control_turn.data)
-      control_turn.data = std::min((double)target_turn, control_turn.data + 0.1);
-    else if (target_turn < control_turn.data)
-      control_turn.data = std::max((double)target_turn, control_turn.data - 0.1);
-    else
-      control_turn.data = target_turn;
-
-    // Update the Twist message
-    // twist.linear.x = x * speed;
-    // twist.linear.y = y * speed;
-    // twist.linear.z = z * speed;
-
-    // twist.angular.x = 0;
-    // twist.angular.y = 0;
-    // twist.angular.z = th * turn;
-
     // Publish it and resolve any remaining callbacks
-    control_turn_2.data = -1 * control_turn.data;
+    pub.publish(twist);
     arm_control_2.data = -1 * arm_control.data;
-    pub_right.publish(control_turn) ;
-    pub_left.publish(control_turn);
-    pub_move.publish(control_speed);
     pub_right_arm.publish(arm_control);
     pub_left_arm.publish(arm_control_2);
     ros::spinOnce();
