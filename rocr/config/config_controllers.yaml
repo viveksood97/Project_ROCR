@@ -27,11 +27,11 @@ rocr:
   controller_left_arm: 
       type: effort_controllers/JointPositionController
       joint: joint_left_arm
-      pid: {p: 2.0, i: 0.5, d: 5.0}
+      pid: {p: 500.0, i: 20.5, d: 4.0}
 
   # Controller 5
   controller_right_arm: 
       type: effort_controllers/JointPositionController
       joint: joint_right_arm
-      pid: {p: 2.0, i: 0.5, d: 5.0}
+      pid: {p: 500.0, i: 20.5, d: 4.0}
  
