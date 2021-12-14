@@ -47,17 +47,26 @@ $ source ~/catkin_ws/devel/setup.bash
 ```
 
 # Running Instructions
-The below command will spawn ROCR bot in gazebo 
+1. To spawn the robot and to use teleop, do the following
+In the first terminal
 ```
-roslaunch rocr rocr_bot.launch 
+roslaunch rocr rocr_teleop.launch 
+```
+In the second terminal 
+```
+rosrun rocr teleop
 ```
 
-To move the ROCR using teleop (C++) run the below command
+2. To launch the robot to map the environment
 ```
-rosrun rocr teleop_twist_keyboard 
+roslaunch rocr rocr_mapping.launch
+```
+In the second terminal 
+```
+rosrun rocr teleop
 ```
 
-To move the ROCR using te) run the below command
+3. To move the ROCR using python script for teleop run the below command
 ```
 rosrun rocr teleop_template.py
 ```
@@ -65,12 +74,12 @@ rosrun rocr teleop_template.py
 # Instructions to download dependencies
 1. Controller dependencies
 ```
-ros-<distro>-effort-controllers   
+ros-<distro>-effort-controllers
 ```
 Example : $ ros-noetic-effort-controllers
 
 ```
-ros-<distro>-velocity-controllers   
+ros-<distro>-velocity-controllers
 ```
 Example : $ ros-noetic-velocity-controllers 
 
@@ -78,9 +87,11 @@ Example : $ ros-noetic-velocity-controllers
 ```
 cd ~/catkin_ws
 source ./devel/setup.bash
-rostest rocr launch_test.launch    
+rostest rocr launch_test.launch
 ```
 
+# Teleop Demo
+Link to our demo using teleop can be found here : [Teleop](https://drive.google.com/file/d/13ukHqaSyQd25P1MaozAVafxTnIGlpeeT/view?usp=sharing)
 
 # Sprint notes 
 The link to our sprint notes can be found [here](https://docs.google.com/document/d/1bqV_HCkFut4tG7U7UBhUveYOTpLC3wL2CKf_Kpq-iWs/edit)
@@ -92,5 +103,7 @@ We have been following the agile methodology in this project to track all the ta
 
 # Video presntation
 The link to our video presentation : [Phase1](https://drive.google.com/drive/u/0/folders/1dvlhAqxTyvUwC-_0GbSXE5IGWAGvmSi3)
+The link to our Final video presentation : [Final](https://drive.google.com/file/d/15Ri8GeJg8-g4n-hoivSUbd_WgQXKCHDm/view?usp=sharing)
+
 
 
