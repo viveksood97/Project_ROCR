@@ -10,13 +10,19 @@
 #include <gtest/gtest.h>
 #include <ros/ros.h>
 #include <string>
-
+#include <map>
+#include <vector>
+#include "rocr/teleop.hpp"
 
 
 /**
-*   @brief A test to ensure that the test setup works
+*   @brief A test to ensure that the teleop works
 */
-TEST(rocr, dummy_test) {
-    std::string dummy = "Checking Test Setup";
-    EXPECT_EQ( "Checking Test Setup", "Checking Test Setup");
+TEST(rocr_test, test) {
+    Teleop teleop;
+    ros::NodeHandle n;
+
+    EXPECT_EQ(teleop.get_moveBindings()['i'][0], 1);
+    EXPECT_EQ(teleop.get_speedBindings()['q'][0], 1.1);
+    EXPECT_EQ(teleop.get_moveBindings()[1][0], 0.0);
 }
