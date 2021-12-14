@@ -1,18 +1,50 @@
+/**
+ *  @Copyright 2021 Markose Jacob, Yash Mandar Kulkarni, Vivek Sood
+ *  @file teleop.cpp
+ *  @author Markose Jacob, Yash Mandar Kulkarni, Vivek Sood
+ *  @date 12/12/2021
+ *
+ *  @brief Teleop to move the robot and to open and close arms.
+ *  @brief Original open source code taken from git clone https://github.com/methylDragon/teleop_twist_keyboard_cpp.git
+ *
+ *  @section LICENSE
+ *  
+ * MIT License
+ * Copyright (c) 2021 Markose Jacob, Yash Mandar Kulkarni, Vivek Sood
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ * 
+ *  @section DESCRIPTION
+ *
+ *  Teleop for ROCR bot
+ *
+ */
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
 #include <std_msgs/Float64.h>
-
-
 #include <stdio.h>
 #include <unistd.h>
 #include <termios.h>
-
 #include <map>
 #include <algorithm>
 
 // Map for movement keys
-std::map<char, std::vector<float>> moveBindings
-{
+std::map<char, std::vector<float>> moveBindings {
   {'i', {1, 0, 0, 0}},
   {'o', {1, 0, 0, -1}},
   {'j', {0, 0, 0, 1}},
@@ -36,8 +68,7 @@ std::map<char, std::vector<float>> moveBindings
 };
 
 // Map for speed keys
-std::map<char, std::vector<float>> speedBindings
-{
+std::map<char, std::vector<float>> speedBindings {
   {'q', {1.1, 1.1}},
   {'z', {0.9, 0.9}},
   {'w', {1.1, 1}},
@@ -46,11 +77,10 @@ std::map<char, std::vector<float>> speedBindings
   {'c', {1, 0.9}}
 };
 
-//Create map armBindings
-std::map<char, std::vector<float>> armBindings
-{
-  {'1',{0.0,0}},
-  {'2',{-0.1,0}}
+// Create map armBindings
+std::map<char, std::vector<float>> armBindings {
+  {'1', {0.0, 0}},
+  {'2', {-0.1, 0}}
 };
 
 // Reminder message
@@ -86,17 +116,29 @@ Press 1 to close the arms
 CTRL-C to quit
 
 )";
-
-// Init variables
-float speed(0.5); // Linear velocity (m/s)
-float turn(1.0); // Angular velocity (rad/s)
-float x(0), y(0), z(0), th(0); // Forward/backward/neutral direction vars
-float arm_movement(0); // Arm Movement
+/**
+ * @brief Init Variables
+ * @param speed Linear velocity (m/s)
+ * @param turn Angular velocity (rad/s)
+ * @param x Forward direction
+ * @param y backward direction
+ * @param z neutral direction
+ * @param th angle direction
+ * @param arm_movements Arm Movement
+ * @param key To read the key entered
+ */
+float speed(0.5);
+float turn(1.0);
+float x(0), y(0), z(0), th(0);
+float arm_movement(0);
 char key(' ');
 
-// For non-blocking keyboard inputs
-int getch(void)
-{
+/**
+ * @brief For non-blocking keyboard inputs
+ * 
+ * @return int 
+ */
+int getch(void) {
   int ch;
   struct termios oldt;
   struct termios newt;
@@ -123,60 +165,75 @@ int getch(void)
   return ch;
 }
 
-int main(int argc, char** argv)
-{
-  // Init ROS node
+int main(int argc, char** argv) {
+  /**
+   * @brief Init ROS node
+   * 
+   */
   ros::init(argc, argv, "teleop_twist_keyboard");
+  /**
+   * 
+   * @param nh ROS NodeHandle
+   */
   ros::NodeHandle nh;
+  /**
+   * @brief Publisher for cmd_vel topic to rotate wheels and move arms
+   * @param pub cmd_vel publisher
+   * @param pub_right_arm cmd_vel publisher
+   * @param pub_left_arm cmd_vel publisher
+   */
+  ros::Publisher pub = nh.advertise<geometry_msgs::Twist>
+  ("/rocr_controller/cmd_vel", 1);
+  ros::Publisher pub_right_arm = nh.advertise<std_msgs::Float64>
+  ("/controller_right_arm/command", 10);
+  ros::Publisher pub_left_arm = nh.advertise<std_msgs::Float64>
+  ("/controller_left_arm/command", 10);
 
-  // Init cmd_vel publisher
-  ros::Publisher pub = nh.advertise<geometry_msgs::Twist>("/rocr_controller/cmd_vel", 1);
-  ros::Publisher pub_right_arm = nh.advertise<std_msgs::Float64>("/controller_right_arm/command", 10);
-  ros::Publisher pub_left_arm = nh.advertise<std_msgs::Float64>("/controller_left_arm/command", 10);
-
-  // Create Twist message
+  /**
+   * @brief Creating Twist and Float messages for wheels and arms respectivly
+   * @param twist for wheels
+   * @param arm_control for left arm
+   * @param arm_control_2 for right arm
+   */
   geometry_msgs::Twist twist;
   std_msgs::Float64 arm_control, arm_control_2;
 
   printf("%s", msg);
   printf("\rCurrent: speed %f\tturn %f | Awaiting command...\r", speed, turn);
 
-  while(true){
-
+  /**
+   * @brief While loop which ends only when the program is terminated.
+   * @brief Keep taking in put from the user and compares it with the key map
+   * @brief Appropriate action is taken based on user choice
+   */
+  while (true) {
     // Get the pressed key
     key = getch();
 
     // If the key corresponds to a key in moveBindings
-    if (moveBindings.count(key) == 1)
-    {
+    if (moveBindings.count(key) == 1) {
       // Grab the direction data
       x = moveBindings[key][0];
       y = moveBindings[key][1];
       z = moveBindings[key][2];
       th = moveBindings[key][3];
 
-      printf("\rCurrent: speed %f\tturn %f | Last command: %c   ", speed, turn, key);
-    }
-
-    // Otherwise if it corresponds to a key in speedBindings
-    else if (speedBindings.count(key) == 1)
-    {
+      printf("\rCurrent: speed %f\tturn %f | Last command: %c   ",
+      speed, turn, key);
+      // Otherwise if it corresponds to a key in speedBindings
+    } else if (speedBindings.count(key) == 1) {
       // Grab the speed data
       speed = speed * speedBindings[key][0];
       turn = turn * speedBindings[key][1];
 
-      printf("\rCurrent: speed %f\tturn %f | Last command: %c   ", speed, turn, key);
-    }
-
-    else if (armBindings.count(key) == 1)
-    {
+      printf("\rCurrent: speed %f\tturn %f | Last command: %c   ",
+      speed, turn, key);
+      // Otherwise if it corresponds to a key in armBindings
+    } else if (armBindings.count(key) == 1) {
       // Grab arm movement
       arm_movement = armBindings[key][0];
-    }
-
-    // Otherwise, set the robot to stop
-    else
-    {
+      // Otherwise, set the robot to stop
+    } else {
       x = 0;
       y = 0;
       z = 0;
@@ -184,12 +241,12 @@ int main(int argc, char** argv)
       arm_movement = 0;
 
       // If ctrl-C (^C) was pressed, terminate the program
-      if (key == '\x03')
-      {
+      if (key == '\x03') {
         break;
       }
 
-      printf("\rCurrent: speed %f\tturn %f | Invalid command! %c", speed, turn, key);
+      printf("\rCurrent: speed %f\tturn %f | Invalid command! %c",
+      speed, turn, key);
     }
 
     // Update the Twist message
